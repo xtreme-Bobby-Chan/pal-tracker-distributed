@@ -17,9 +17,20 @@ dependencies {
 
     compile "io.pivotal.spring.cloud:spring-cloud-services-starter-circuit-breaker"
 
+    compile "org.springframework.cloud:spring-cloud-starter-oauth2"
+    compile "io.pivotal.spring.cloud:spring-cloud-sso-connector:$springCloudSsoVersion"
+
     compile "com.zaxxer:HikariCP:2.3.7"
     compile "mysql:mysql-connector-java:$mysqlVersion"
     compile "ch.qos.logback:logback-classic:1.1.11"
 
     testCompile project(":components:test-support")
 }
+
+bootRun.environment([
+        "APPLICATION_OAUTH_ENABLED": true,
+        "SECURITY_OAUTH2_CLIENT_CLIENT_ID": "19648632-2e63-4d4e-bbb2-96eb1ecb451a",
+        "SECURITY_OAUTH2_CLIENT_CLIENT_SECRET": "eadefc45-2acb-4aa5-acfb-ab145af2d0c7",
+        "SECURITY_USER_NAME": "actuator",
+        "SECURITY_USER_PASSWORD": "operations4red"
+])
